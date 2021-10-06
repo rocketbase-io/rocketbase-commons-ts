@@ -1,0 +1,10 @@
+{
+  "name": "@rocketbase/commons-auth-client",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "axios": "^0.22.0"
+  },
+  "dependencies": {
+    "@rocketbase/commons-util": "^0.0.1"
+  }
+}

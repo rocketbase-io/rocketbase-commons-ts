@@ -1,6 +1,47 @@
 {
   "version": 2,
   "projects": {
+    "auth-client": {
+      "root": "packages/auth-client",
+      "sourceRoot": "packages/auth-client/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/auth-client",
+            "tsConfig": "packages/auth-client/tsconfig.lib.json",
+            "project": "packages/auth-client/package.json",
+            "entryFile": "packages/auth-client/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "packages/auth-client/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/auth-client/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/auth-client"],
+          "options": {
+            "jestConfig": "packages/auth-client/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "util": {
       "root": "packages/util",
       "sourceRoot": "packages/util/src",

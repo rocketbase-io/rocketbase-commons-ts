@@ -13,6 +13,9 @@
     }
   },
   "projects": {
+    "auth-client": {
+      "tags": []
+    },
     "util": {
       "tags": []
     }

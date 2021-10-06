@@ -1,6 +1,9 @@
 {
   "name": "@rocketbase/commons-util",
   "version": "0.0.1",
+  "main": "./util.umd.js",
+  "module": "./util.esm.js",
+  "typings": "./index.d.ts",
   "peerDependencies": {
     "axios": "^0.22.0",
     "qs": "^6.10.1",
