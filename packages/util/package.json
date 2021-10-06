@@ -1,0 +1,12 @@
+{
+  "name": "@rocketbase/commons-util",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "axios": "^0.22.0",
+    "qs": "^6.10.1",
+    "react-query": "^3.25.1"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.7"
+  }
+}
