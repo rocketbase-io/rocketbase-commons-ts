@@ -1,7 +1,7 @@
 {
-  "name": "@rocketbase/commons-auth-client",
+  "name": "@rocketbase/commons-core",
   "version": "0.0.1",
-  "description": "Rest-clients and datamodels to interact with rocketbase's commons-auth backend.",
+  "description": "Shared utils and models for all rocketbase's commons projects.",
   "main": "./core.umd.js",
   "module": "./core.esm.js",
   "typings": "./index.d.ts",
@@ -11,7 +11,9 @@
   },
   "keywords": [
     "js",
-    "commons-auth"
+    "commons-rest",
+    "commons-auth",
+    "commons-asset"
   ],
   "author": "Rocketbase Team <team@rocketbase.io>",
   "license": "MIT",
@@ -26,12 +28,10 @@
   },
   "peerDependencies": {
     "axios": "^0.22.0",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "react-query": "^3.25.1"
   },
   "devDependencies": {
     "@types/qs": "^6.9.7"
-  },
-  "dependencies": {
-    "@rocketbase/commons-util": "^0.0.1"
   }
 }

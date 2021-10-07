@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'util',
+  displayName: 'core',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/packages/util',
+  coverageDirectory: '../../coverage/packages/core',
 };

@@ -16,7 +16,7 @@
     "auth-client": {
       "tags": []
     },
-    "util": {
+    "core": {
       "tags": []
     }
   }

@@ -1,14 +1,14 @@
-# commons-auth-client
+# commons-core
 
-Rest-clients and datamodels to interact with rocketbase's [commons-auth](https://github.com/rocketbase-io/commons-auth) backend.
+Shared utils and models for all rocketbase's commons projects.
 
 ## setup
 
-- dependencies:
-  - @rocketbase/commons-util
 - peer-dependencies:
   - axios
   - qs
+  - react-query \
+    *(only used in shorthand to get totalElements of page-results of an InfiniteData )*
 
 ## work in progress
 

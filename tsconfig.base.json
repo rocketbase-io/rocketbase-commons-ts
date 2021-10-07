@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rocketbase/commons-auth-client": ["packages/auth-client/src/index.ts"],
-      "@rocketbase/commons-util": ["packages/util/src/index.ts"]
+      "@rocketbase-commons-ts/core": ["packages/core/src/index.ts"],
+      "@rocketbase/commons-auth-client": ["packages/auth-client/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
