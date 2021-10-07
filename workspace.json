@@ -42,6 +42,47 @@
         }
       }
     },
+    "auth-hook": {
+      "root": "packages/auth-hook",
+      "sourceRoot": "packages/auth-hook/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/auth-hook",
+            "tsConfig": "packages/auth-hook/tsconfig.lib.json",
+            "project": "packages/auth-hook/package.json",
+            "entryFile": "packages/auth-hook/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "packages/auth-hook/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/auth-hook/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/auth-hook"],
+          "options": {
+            "jestConfig": "packages/auth-hook/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "core": {
       "root": "packages/core",
       "sourceRoot": "packages/core/src",

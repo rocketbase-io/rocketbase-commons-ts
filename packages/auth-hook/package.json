@@ -1,0 +1,12 @@
+{
+  "name": "@rocketbase/commons-auth-hook",
+  "version": "0.0.1",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "qs": "^6.10.1",
+    "react-use-auth": "^2.1.0-14"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.7"
+  }
+}
