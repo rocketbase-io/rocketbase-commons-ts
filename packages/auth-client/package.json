@@ -32,6 +32,6 @@
     "@types/qs": "^6.9.7"
   },
   "dependencies": {
-    "@rocketbase/commons-util": "^0.0.1"
+    "@rocketbase/commons-core": "^0.0.1"
   }
 }

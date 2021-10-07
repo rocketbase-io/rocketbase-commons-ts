@@ -1,4 +1,4 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '../../../../util/src';
+import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
 import type { AppCapabilityRead, AppCapabilityWrite, QueryAppCapability } from '../../model';
 import { AxiosRequestConfig } from 'axios';
 

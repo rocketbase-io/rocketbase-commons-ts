@@ -1,4 +1,4 @@
-import { buildRequestorFactory, RequestorBuilder } from '../../../../util/src';
+import { buildRequestorFactory, RequestorBuilder } from '@rocketbase/commons-core';
 import type { JwtTokenBundle } from '../../model';
 import { AxiosRequestConfig } from 'axios';
 

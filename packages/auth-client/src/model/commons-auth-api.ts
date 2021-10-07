@@ -1,4 +1,4 @@
-import type { HasFirstAndLastName, HasKeyValue } from "../../../util/src";
+import type { HasFirstAndLastName, HasKeyValue } from "@rocketbase/commons-core";
 
 export interface ExpirationInfo<T> {
   expires?: string;
