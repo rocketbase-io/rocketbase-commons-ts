@@ -1,4 +1,7 @@
-import { buildRequestorFactory, RequestorBuilder } from '@rocketbase/commons-core';
+import {
+  buildRequestorFactory,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
 import type { LoginRequest, LoginResponse } from '../model';
 import { AxiosRequestConfig } from 'axios';
 
@@ -16,17 +19,17 @@ export interface LoginApi {
 
 export function createLoginApi(cf?: AxiosRequestConfig): LoginApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/auth/`,
+    baseURL: `${cf?.baseURL ?? ''}/auth/`,
   });
 
-  const login: LoginApi["login"] = createRequestor({
-    method: "post",
-    url: "/login",
+  const login: LoginApi['login'] = createRequestor({
+    method: 'post',
+    url: '/login',
     body: (request) => request,
   });
 
-  const newAccessToken: LoginApi["newAccessToken"] = createRequestor({
-    url: "/refresh",
+  const newAccessToken: LoginApi['newAccessToken'] = createRequestor({
+    url: '/refresh',
     headers: ({ refreshToken }) => {
       return { authorization: `Bearer ${refreshToken}` };
     },

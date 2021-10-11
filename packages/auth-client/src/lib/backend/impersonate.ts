@@ -1,4 +1,7 @@
-import { buildRequestorFactory, RequestorBuilder } from '@rocketbase/commons-core';
+import {
+  buildRequestorFactory,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
 import type { JwtTokenBundle } from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
@@ -11,10 +14,10 @@ export interface ImpersonateApi {
 
 export function createImpersonateApi(cf?: AxiosRequestConfig): ImpersonateApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/impersonate`,
+    baseURL: `${cf?.baseURL ?? ''}/api/impersonate`,
   });
 
-  const impersonate: ImpersonateApi["impersonate"] = createRequestor({
+  const impersonate: ImpersonateApi['impersonate'] = createRequestor({
     url: (userIdOrUsername) => `/${userIdOrUsername}`,
   });
 

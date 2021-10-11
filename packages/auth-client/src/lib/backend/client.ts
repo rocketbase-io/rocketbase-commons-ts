@@ -1,5 +1,14 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
-import type { AppClientRead, AppClientWrite, QueryAppClient } from '../../model';
+import {
+  buildRequestorFactory,
+  PageableRequest,
+  PageableResult,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
+import type {
+  AppClientRead,
+  AppClientWrite,
+  QueryAppClient,
+} from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
 export interface ClientQuery extends PageableRequest, QueryAppClient {}
@@ -22,32 +31,32 @@ export interface ClientApi {
 
 export function createClientApi(cf?: AxiosRequestConfig): ClientApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/client`,
+    baseURL: `${cf?.baseURL ?? ''}/api/client`,
   });
 
-  const find: ClientApi["find"] = createRequestor({
-    url: "/",
+  const find: ClientApi['find'] = createRequestor({
+    url: '/',
     params: (query) => query,
   });
 
-  const findById: ClientApi["findById"] = createRequestor({
+  const findById: ClientApi['findById'] = createRequestor({
     url: (id) => `/${id}`,
   });
 
-  const create: ClientApi["create"] = createRequestor({
-    method: "post",
-    url: "/",
+  const create: ClientApi['create'] = createRequestor({
+    method: 'post',
+    url: '/',
     body: (write) => write,
   });
 
-  const update: ClientApi["update"] = createRequestor({
-    method: "put",
+  const update: ClientApi['update'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}`,
     body: ({ write }) => write,
   });
 
-  const remove: ClientApi["remove"] = createRequestor({
-    method: "delete",
+  const remove: ClientApi['remove'] = createRequestor({
+    method: 'delete',
     url: (id) => `/${id}`,
   });
 

@@ -1,5 +1,14 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
-import type { AppCapabilityRead, AppCapabilityWrite, QueryAppCapability } from '../../model';
+import {
+  buildRequestorFactory,
+  PageableRequest,
+  PageableResult,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
+import type {
+  AppCapabilityRead,
+  AppCapabilityWrite,
+  QueryAppCapability,
+} from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
 export interface CapabilityQuery extends PageableRequest, QueryAppCapability {}
@@ -22,32 +31,32 @@ export interface CapabilityApi {
 
 export function createCapabilityApi(cf?: AxiosRequestConfig): CapabilityApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/capability`,
+    baseURL: `${cf?.baseURL ?? ''}/api/capability`,
   });
 
-  const find: CapabilityApi["find"] = createRequestor({
-    url: "",
+  const find: CapabilityApi['find'] = createRequestor({
+    url: '',
     params: (query) => query,
   });
 
-  const findById: CapabilityApi["findById"] = createRequestor({
+  const findById: CapabilityApi['findById'] = createRequestor({
     url: (id) => `/${id}`,
   });
 
-  const create: CapabilityApi["create"] = createRequestor({
-    method: "post",
-    url: "/",
+  const create: CapabilityApi['create'] = createRequestor({
+    method: 'post',
+    url: '/',
     body: (write) => write,
   });
 
-  const update: CapabilityApi["update"] = createRequestor({
-    method: "put",
+  const update: CapabilityApi['update'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}`,
     body: ({ write }) => write,
   });
 
-  const remove: CapabilityApi["remove"] = createRequestor({
-    method: "delete",
+  const remove: CapabilityApi['remove'] = createRequestor({
+    method: 'delete',
     url: (id) => `/${id}`,
   });
 

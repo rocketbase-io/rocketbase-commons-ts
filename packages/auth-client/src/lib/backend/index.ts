@@ -6,12 +6,12 @@ import { CapabilityApi, createCapabilityApi } from './capability';
 import { createImpersonateApi, ImpersonateApi } from './impersonate';
 import { AxiosRequestConfig } from 'axios';
 
-export * from "./client";
-export * from "./group";
-export * from "./team";
-export * from "./user";
-export * from "./capability";
-export * from "./impersonate";
+export * from './client';
+export * from './group';
+export * from './team';
+export * from './user';
+export * from './capability';
+export * from './impersonate';
 
 /**
  * backend api bundle
@@ -25,7 +25,9 @@ export interface CommonsAuthBackendApi {
   impersonate: ImpersonateApi;
 }
 
-export function createCommonsAuthBackendApi(cf?: AxiosRequestConfig): CommonsAuthBackendApi {
+export function createCommonsAuthBackendApi(
+  cf?: AxiosRequestConfig
+): CommonsAuthBackendApi {
   const capability = createCapabilityApi(cf);
   const client = createClientApi(cf);
   const group = createGroupApi(cf);

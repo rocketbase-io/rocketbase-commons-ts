@@ -1,5 +1,12 @@
-import { buildRequestorFactory, RequestorBuilder } from '@rocketbase/commons-core';
-import type { AppInviteRead, AppUserRead, ConfirmInviteRequest } from '../../model';
+import {
+  buildRequestorFactory,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
+import type {
+  AppInviteRead,
+  AppUserRead,
+  ConfirmInviteRequest,
+} from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
 /**
@@ -12,19 +19,19 @@ export interface InviteApi {
 
 export function createInviteApi(cf?: AxiosRequestConfig): InviteApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/auth/invite`,
+    baseURL: `${cf?.baseURL ?? ''}/auth/invite`,
   });
 
-  const verify: InviteApi["verify"] = createRequestor({
-    url: "",
+  const verify: InviteApi['verify'] = createRequestor({
+    url: '',
     params: (id) => {
       return { inviteId: id };
     },
   });
 
-  const transformToUser: InviteApi["transformToUser"] = createRequestor({
-    method: "post",
-    url: "/",
+  const transformToUser: InviteApi['transformToUser'] = createRequestor({
+    method: 'post',
+    url: '/',
     body: (request) => request,
   });
 

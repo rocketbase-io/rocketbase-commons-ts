@@ -4,10 +4,10 @@ import { createRegistrationApi, RegistrationApi } from './registration';
 import { createValidationApi, ValidationApi } from './validation';
 import { AxiosRequestConfig } from 'axios';
 
-export * from "./forgotPassword";
-export * from "./invite";
-export * from "./registration";
-export * from "./validation";
+export * from './forgotPassword';
+export * from './invite';
+export * from './registration';
+export * from './validation';
 
 /**
  * public api bundle
@@ -19,7 +19,9 @@ export interface CommonsAuthPublicApi {
   validation: ValidationApi;
 }
 
-export function createCommonsAuthPublicApi(cf?: AxiosRequestConfig): CommonsAuthPublicApi {
+export function createCommonsAuthPublicApi(
+  cf?: AxiosRequestConfig
+): CommonsAuthPublicApi {
   const forgotPassword = createForgotPasswordApi(cf);
   const invite = createInviteApi(cf);
   const registration = createRegistrationApi(cf);

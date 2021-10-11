@@ -24,14 +24,12 @@
     "@rocketbase:registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "peerDependencies": {
-    "axios": "^0.22.0",
-    "qs": "^6.10.1"
-  },
   "devDependencies": {
     "@types/qs": "^6.9.7"
   },
   "dependencies": {
-    "@rocketbase/commons-core": "^0.0.1"
+    "@rocketbase/commons-core": "^0.0.1",
+    "axios": "^0.22.0",
+    "qs": "^6.10.1"
   }
 }

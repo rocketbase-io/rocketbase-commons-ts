@@ -1,4 +1,9 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
+import {
+  buildRequestorFactory,
+  PageableRequest,
+  PageableResult,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
 import type { AppTeamRead, AppTeamWrite, QueryAppTeam } from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
@@ -22,32 +27,32 @@ export interface TeamApi {
 
 export function createTeamApi(cf?: AxiosRequestConfig): TeamApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/team`,
+    baseURL: `${cf?.baseURL ?? ''}/api/team`,
   });
 
-  const find: TeamApi["find"] = createRequestor({
-    url: "",
+  const find: TeamApi['find'] = createRequestor({
+    url: '',
     params: (query) => query,
   });
 
-  const findById: TeamApi["findById"] = createRequestor({
+  const findById: TeamApi['findById'] = createRequestor({
     url: (id) => `/${id}`,
   });
 
-  const create: TeamApi["create"] = createRequestor({
-    method: "post",
-    url: "",
+  const create: TeamApi['create'] = createRequestor({
+    method: 'post',
+    url: '',
     body: (create) => create,
   });
 
-  const update: TeamApi["update"] = createRequestor({
-    method: "put",
+  const update: TeamApi['update'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}`,
     body: ({ write }) => write,
   });
 
-  const remove: TeamApi["remove"] = createRequestor({
-    method: "delete",
+  const remove: TeamApi['remove'] = createRequestor({
+    method: 'delete',
     url: (id) => `/${id}`,
   });
 

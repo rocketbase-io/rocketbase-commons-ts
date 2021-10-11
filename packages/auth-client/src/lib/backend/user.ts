@@ -1,5 +1,16 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
-import type { AppUserCreate, AppUserRead, AppUserResetPassword, AppUserUpdate, QueryAppUser } from '../../model';
+import {
+  buildRequestorFactory,
+  PageableRequest,
+  PageableResult,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
+import type {
+  AppUserCreate,
+  AppUserRead,
+  AppUserResetPassword,
+  AppUserUpdate,
+  QueryAppUser,
+} from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
 export interface UserQuery extends PageableRequest, QueryAppUser {}
@@ -28,44 +39,44 @@ export interface UserApi {
 
 export function createUserApi(cf?: AxiosRequestConfig): UserApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/user`,
+    baseURL: `${cf?.baseURL ?? ''}/api/user`,
   });
 
-  const find: UserApi["find"] = createRequestor({
-    url: "",
+  const find: UserApi['find'] = createRequestor({
+    url: '',
     params: (query) => query,
   });
 
-  const findById: UserApi["findById"] = createRequestor({
+  const findById: UserApi['findById'] = createRequestor({
     url: (id) => `/${id}`,
   });
 
-  const create: UserApi["create"] = createRequestor({
-    method: "post",
-    url: "",
+  const create: UserApi['create'] = createRequestor({
+    method: 'post',
+    url: '',
     body: (create) => create,
   });
 
-  const resetPassword: UserApi["resetPassword"] = createRequestor({
-    method: "put",
+  const resetPassword: UserApi['resetPassword'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}/password`,
     body: ({ reset }) => reset,
   });
 
-  const update: UserApi["update"] = createRequestor({
-    method: "put",
+  const update: UserApi['update'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}`,
     body: ({ update }) => update,
   });
 
-  const patch: UserApi["patch"] = createRequestor({
-    method: "patch",
+  const patch: UserApi['patch'] = createRequestor({
+    method: 'patch',
     url: ({ id }) => `/${id}`,
     body: ({ update }) => update,
   });
 
-  const remove: UserApi["remove"] = createRequestor({
-    method: "delete",
+  const remove: UserApi['remove'] = createRequestor({
+    method: 'delete',
     url: (id) => `/${id}`,
   });
 

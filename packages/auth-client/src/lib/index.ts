@@ -5,11 +5,12 @@ import { AuthenticationApi, createAuthenticationApi } from './authentication';
 import { createLoginApi, LoginApi } from './login';
 import { createUserSearchApi, UserSearchApi } from './userSearch';
 
-export * from "./backend";
-export * from "./public";
-export * from "./authentication";
-export * from "./login";
-export * from "./userSearch";
+export * from './backend';
+export * from './public';
+export * from './authentication';
+export * from './login';
+export * from './userSearch';
+export * from './oauth';
 
 /**
  * full api bundle

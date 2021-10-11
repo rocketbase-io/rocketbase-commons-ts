@@ -1,4 +1,9 @@
-import { buildRequestorFactory, PageableRequest, PageableResult, RequestorBuilder } from '@rocketbase/commons-core';
+import {
+  buildRequestorFactory,
+  PageableRequest,
+  PageableResult,
+  RequestorBuilder,
+} from '@rocketbase/commons-core';
 import type { AppGroupRead, AppGroupWrite, QueryAppGroup } from '../../model';
 import { AxiosRequestConfig } from 'axios';
 
@@ -27,32 +32,32 @@ export interface GroupApi {
 
 export function createGroupApi(cf?: AxiosRequestConfig): GroupApi {
   const createRequestor = buildRequestorFactory(cf, {
-    baseURL: `${cf?.baseURL ?? ""}/api/group`,
+    baseURL: `${cf?.baseURL ?? ''}/api/group`,
   });
 
-  const find: GroupApi["find"] = createRequestor({
-    url: "",
+  const find: GroupApi['find'] = createRequestor({
+    url: '',
     params: (query) => query,
   });
 
-  const findById: GroupApi["findById"] = createRequestor({
+  const findById: GroupApi['findById'] = createRequestor({
     url: (id) => `/${id}`,
   });
 
-  const create: GroupApi["create"] = createRequestor({
-    method: "post",
+  const create: GroupApi['create'] = createRequestor({
+    method: 'post',
     url: ({ parentId }) => `/${parentId}`,
     body: ({ write }) => write,
   });
 
-  const update: GroupApi["update"] = createRequestor({
-    method: "put",
+  const update: GroupApi['update'] = createRequestor({
+    method: 'put',
     url: ({ id }) => `/${id}`,
     body: ({ write }) => write,
   });
 
-  const remove: GroupApi["remove"] = createRequestor({
-    method: "delete",
+  const remove: GroupApi['remove'] = createRequestor({
+    method: 'delete',
     url: (id) => `/${id}`,
   });
 
