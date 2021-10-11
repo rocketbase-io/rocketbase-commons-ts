@@ -13,7 +13,7 @@
     }
   },
   "projects": {
-    "auth-client": {
+    "auth-api": {
       "tags": []
     },
     "auth-hook": {
@@ -21,6 +21,13 @@
     },
     "core": {
       "tags": []
+    },
+    "demo-react-sample": {
+      "tags": []
+    },
+    "demo-react-sample-e2e": {
+      "tags": [],
+      "implicitDependencies": ["demo-react-sample"]
     }
   }
 }

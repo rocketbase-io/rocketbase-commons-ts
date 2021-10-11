@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@rocketbase-commons-ts/auth-api": ["packages/auth-api/src/index.ts"],
       "@rocketbase-commons-ts/core": ["packages/core/src/index.ts"],
-      "@rocketbase/commons-auth-client": ["packages/auth-client/src/index.ts"],
       "@rocketbase/commons-auth-hook": ["packages/auth-hook/src/index.ts"]
     }
   },
