@@ -1,9 +1,9 @@
 {
-  "name": "@rocketbase/commons-auth-client",
+  "name": "@rocketbase/commons-auth-api",
   "version": "0.0.1",
   "description": "Rest-clients and datamodels to interact with rocketbase's commons-auth backend.",
-  "main": "./core.umd.js",
-  "module": "./core.esm.js",
+  "main": "./auth-api.umd.js",
+  "module": "./auth-api.esm.js",
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",

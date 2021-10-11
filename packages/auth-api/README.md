@@ -1,4 +1,4 @@
-# commons-auth-client
+# commons-auth-api
 
 Rest-clients and datamodels to interact with rocketbase's [commons-auth](https://github.com/rocketbase-io/commons-auth) backend.
 

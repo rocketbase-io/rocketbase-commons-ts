@@ -3,7 +3,7 @@
  */
 
 // @ts-ignore
-const crypto = typeof window !== 'undefined' ? window.crypto || window.msCrypto : null;
+const crypto =  typeof window !== 'undefined' ? window.crypto || window.msCrypto : null;
 
 function _cryptoUuidv4() {
   // @ts-ignore
@@ -24,7 +24,8 @@ function _uuidv4() {
 
 export default function random() {
   const hasCrypto = typeof crypto !== 'undefined' && crypto !== null;
-  const hasRandomValues = hasCrypto && typeof crypto!.getRandomValues !== 'undefined';
+  const hasRandomValues =
+    hasCrypto && typeof crypto!.getRandomValues !== 'undefined';
   const uuid = hasRandomValues ? _cryptoUuidv4 : _uuidv4;
   return uuid().replace(/-/g, '');
 }

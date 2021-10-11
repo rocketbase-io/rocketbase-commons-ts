@@ -2,7 +2,7 @@ import {
   AppUserToken,
   JwtTokenBundle,
   TokenResponse,
-} from '@rocketbase/commons-auth-client';
+} from '@rocketbase-commons-ts/auth-api';
 
 export interface OAuthProps {
   clientId: string;
@@ -13,7 +13,7 @@ export interface OAuthProps {
   endSessionUri?: string;
   registerUri?: string;
   logoutUri?: string;
-  signupUri?: string,
+  signupUri?: string;
   scope?: string;
   audience?: string;
 }

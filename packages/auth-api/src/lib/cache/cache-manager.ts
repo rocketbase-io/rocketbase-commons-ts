@@ -8,8 +8,7 @@ export class CacheManager {
   constructor(
     private keyManifest?: CacheKeyManifest,
     private cache: ICache = new LocalStorageCache()
-  ) {
-  }
+  ) {}
 
   get(
     cacheKey: CacheKey,
@@ -36,14 +35,12 @@ export class CacheManager {
 
     // only return cache when accessToken or refreshToken is valid
     if (entry.tokenExpiresAt - expiryAdjustmentSeconds < nowSeconds) {
-
       if (
         entry.refreshToken &&
         entry.refreshTokenExpiresAt - expiryAdjustmentSeconds > nowSeconds
       ) {
         return { ...entry, token: undefined };
       }
-
 
       this.cache.remove(cacheKey.toKey());
       this.keyManifest?.remove(cacheKey.toKey());
@@ -58,7 +55,7 @@ export class CacheManager {
     const cacheKey = new CacheKey({
       client_id: entry.client_id,
       scope: entry.scope,
-      audience: entry.audience
+      audience: entry.audience,
     });
 
     this.cache.set(cacheKey.toKey(), entry);

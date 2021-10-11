@@ -15,7 +15,7 @@ import {
 import { CacheKeyManifest } from '../cache/key-manifest';
 import qs from 'qs';
 import random from './random';
-import { AppUserToken, TokenResponse } from '@rocketbase/commons-auth-client';
+import { AppUserToken, TokenResponse } from '@rocketbase-commons-ts/auth-api';
 import axios from 'axios';
 
 export class OauthClient {
@@ -81,7 +81,8 @@ export class OauthClient {
                 })
                 .then(({ data: userInfo }) => {
                   let locationBeforeAuth: string | undefined = undefined;
-                  const authConfigs: any = this.cache.get(this.authorizeKey()) || {};
+                  const authConfigs: any =
+                    this.cache.get(this.authorizeKey()) || {};
                   if (state in authConfigs) {
                     locationBeforeAuth = authConfigs[state] as string;
                   }
