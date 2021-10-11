@@ -1,16 +1,17 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "react-use-auth": "./useAuth.d.ts"
+      "react-use-auth": ["./useAuth.d.ts"]
     }
   },
   "files": [],
