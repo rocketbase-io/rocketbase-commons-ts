@@ -1,6 +1,6 @@
 {
   "name": "@rocketbase/commons-auth-client",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Rest-clients and datamodels to interact with rocketbase's commons-auth backend.",
   "main": "./core.umd.js",
   "module": "./core.esm.js",
@@ -28,7 +28,7 @@
     "@types/qs": "^6.9.7"
   },
   "dependencies": {
-    "@rocketbase/commons-core": "^0.0.1",
+    "@rocketbase/commons-core": "^0.0.2",
     "axios": "^0.22.0",
     "qs": "^6.10.1"
   }
