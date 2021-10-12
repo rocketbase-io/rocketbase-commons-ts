@@ -5,6 +5,7 @@ import axios, {
   Method,
 } from 'axios';
 import qs from 'qs';
+import {CancellablePromise} from "./cancellable-promise";
 
 export interface RequestorBuildConfig<Options, Result, Error = unknown> {
   client?: AxiosInstance;
@@ -24,7 +25,7 @@ function mergeRequestConfig(
   const result: AxiosRequestConfig = {};
   for (const config of configs.map((it = {}) => it)) {
     for (const key of Object.keys(config) as (keyof typeof config)[]) {
-      if (config[key] == null) continue;
+      if (config[key] == null)
       else if (!deep.includes(key)) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -38,13 +39,6 @@ function mergeRequestConfig(
   }
 
   return result;
-}
-
-export interface CancellablePromise<T> extends Promise<T> {
-  /**
-   * allow to cancel axios query
-   */
-  cancel: () => void;
 }
 
 export type RequestorBuilder<Options, Result> = (
