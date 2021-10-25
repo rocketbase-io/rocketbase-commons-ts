@@ -12,22 +12,24 @@
       }
     }
   },
-  "projects": {
-    "auth-api": {
-      "tags": []
-    },
-    "auth-hook": {
-      "tags": []
-    },
-    "core": {
-      "tags": []
-    },
-    "demo-react-sample": {
-      "tags": []
-    },
-    "demo-react-sample-e2e": {
-      "tags": [],
-      "implicitDependencies": ["demo-react-sample"]
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
     }
-  }
+  },
+  "defaultProject": "demo-react-sample"
 }
