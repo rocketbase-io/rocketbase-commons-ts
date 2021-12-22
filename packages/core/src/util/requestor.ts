@@ -2,10 +2,10 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  Method,
+  Method
 } from 'axios';
 import qs from 'qs';
-import {CancellablePromise} from "./cancellable-promise";
+import { CancellablePromise } from './cancellable-promise';
 
 export interface RequestorBuildConfig<Options, Result, Error = unknown> {
   client?: AxiosInstance;
@@ -65,9 +65,9 @@ export function buildRequestor<Options, Result, Error = unknown>(
     headers,
     params,
     body,
-    options: clientOptions,
+    options: clientOptions
   } = config;
-  return function ({ overrides, ...options }) {
+  return function({ overrides, ...options }) {
     const source = axios.CancelToken.source();
     const config = mergeRequestConfig(
       cf,
@@ -76,12 +76,12 @@ export function buildRequestor<Options, Result, Error = unknown>(
         url: applyIfNecessary(url, options as Options),
         headers: applyIfNecessary(headers, options as Options) as never,
         params: applyIfNecessary(params, options as Options),
-        data: applyIfNecessary(body, options as Options),
+        data: applyIfNecessary(body, options as Options)
       },
       applyIfNecessary(clientOptions, options as Options),
       {
         cancelToken: source.token,
-        ...overrides,
+        ...overrides
       }
     );
     const promise: Partial<CancellablePromise<AxiosResponse<Result>>> =
@@ -94,16 +94,22 @@ export function buildRequestor<Options, Result, Error = unknown>(
   };
 }
 
-export function buildRequestorFactory(
-  ...configs: (AxiosRequestConfig | undefined)[]
-): typeof buildRequestor {
-  const cf = mergeRequestConfig(
+export function buildDefaultAxiosRequestConfig(...configs: (AxiosRequestConfig | undefined)[]) {
+  return mergeRequestConfig(
     {
       headers: { 'content-type': 'application/json' },
       paramsSerializer: (params) =>
-        qs.stringify(params, { arrayFormat: 'repeat' }),
+        qs.stringify(params, { arrayFormat: 'repeat' })
     },
     ...configs
   );
-  return (config) => buildRequestor(config, cf);
+}
+
+export function buildRequestorFactory(
+  client: AxiosInstance = axios,
+  ...configs: (AxiosRequestConfig | undefined)[]
+): typeof buildRequestor {
+  return (config) => buildRequestor({ client, ...config },
+    buildDefaultAxiosRequestConfig(...configs)
+  );
 }

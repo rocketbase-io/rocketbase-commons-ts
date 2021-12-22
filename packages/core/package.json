@@ -1,6 +1,6 @@
 {
   "name": "@rocketbase/commons-core",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Shared utils and models for all rocketbase's commons projects.",
   "main": "./core.umd.js",
   "module": "./core.esm.js",
