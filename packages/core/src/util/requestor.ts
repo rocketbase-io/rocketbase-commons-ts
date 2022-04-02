@@ -1,11 +1,5 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method
-} from 'axios';
+import axios, { AxiosInstance,  AxiosRequestConfig, Method } from 'axios';
 import qs from 'qs';
-import { CancellablePromise } from './cancellable-promise';
 
 export interface RequestorBuildConfig<Options, Result, Error = unknown> {
   client?: AxiosInstance;
@@ -33,7 +27,7 @@ function mergeRequestConfig(
       } else {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        result[key] = { ...(result[key] ?? {}), ...(config[key] ?? {}) };
+        result[key] = {...(result[key] ?? {}), ...(config[key] ?? {})};
       }
     }
   }
@@ -43,7 +37,7 @@ function mergeRequestConfig(
 
 export type RequestorBuilder<Options, Result> = (
   options: Options & { overrides?: AxiosRequestConfig }
-) => CancellablePromise<AxiosResponse<Result>>;
+) => Promise<Result>;
 
 function applyIfNecessary<Options, Result>(
   element: ((options: Options) => Result) | Result,
@@ -67,8 +61,7 @@ export function buildRequestor<Options, Result, Error = unknown>(
     body,
     options: clientOptions
   } = config;
-  return function({ overrides, ...options }) {
-    const source = axios.CancelToken.source();
+  return function ({overrides, ...options}) {
     const config = mergeRequestConfig(
       cf,
       {
@@ -79,27 +72,18 @@ export function buildRequestor<Options, Result, Error = unknown>(
         data: applyIfNecessary(body, options as Options)
       },
       applyIfNecessary(clientOptions, options as Options),
-      {
-        cancelToken: source.token,
-        ...overrides
-      }
+      overrides
     );
-    const promise: Partial<CancellablePromise<AxiosResponse<Result>>> =
-      client.request(config);
-    promise.cancel = () => {
-      // used by react-query to cancel request
-      source.cancel('stopped execution of query');
-    };
-    return promise as CancellablePromise<AxiosResponse<Result>>;
+    return client.request(config).then(resp => resp.data);
   };
 }
 
 export function buildDefaultAxiosRequestConfig(...configs: (AxiosRequestConfig | undefined)[]) {
   return mergeRequestConfig(
     {
-      headers: { 'content-type': 'application/json' },
+      headers: {'content-type': 'application/json'},
       paramsSerializer: (params) =>
-        qs.stringify(params, { arrayFormat: 'repeat' })
+        qs.stringify(params, {arrayFormat: 'repeat'})
     },
     ...configs
   );
@@ -109,7 +93,7 @@ export function buildRequestorFactory(
   client: AxiosInstance = axios,
   ...configs: (AxiosRequestConfig | undefined)[]
 ): typeof buildRequestor {
-  return (config) => buildRequestor({ client, ...config },
+  return (config) => buildRequestor({client, ...config},
     buildDefaultAxiosRequestConfig(...configs)
   );
 }

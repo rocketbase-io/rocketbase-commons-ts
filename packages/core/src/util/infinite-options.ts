@@ -1,4 +1,4 @@
-import { UseInfiniteQueryOptions } from "react-query/types/react/types";
+import { UseInfiniteQueryOptions } from "react-query";
 import { PageableResult } from '../model';
 
 export function createInfiniteOptions<TQueryFnData extends PageableResult<unknown>, TError, TData>(

@@ -1,5 +1,5 @@
 import { PageableResult } from '../model';
-import { InfiniteData } from 'react-query/types/core/types';
+import { InfiniteData } from 'react-query';
 
 export function infiniteTotalElements<T>(
   data: InfiniteData<PageableResult<T>>

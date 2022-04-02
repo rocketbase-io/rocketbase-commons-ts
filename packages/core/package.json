@@ -1,6 +1,6 @@
 {
   "name": "@rocketbase/commons-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared utils and models for all rocketbase's commons projects.",
   "main": "./core.umd.js",
   "module": "./core.esm.js",
@@ -29,9 +29,14 @@
   "peerDependencies": {
     "axios": "^0.22.0",
     "qs": "^6.10.1",
-    "react-query": "^3.25.1"
+    "react-query": "^3.30.0",
+    "react": "^17.0.0"
   },
   "devDependencies": {
-    "@types/qs": "^6.9.7"
+    "@types/qs": "^6.9.7",
+    "axios": "^0.22.0",
+    "qs": "^6.10.1",
+    "react-query": "^3.30.0",
+    "react": "^17.0.0"
   }
 }
