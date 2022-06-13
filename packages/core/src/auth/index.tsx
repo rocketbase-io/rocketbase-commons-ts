@@ -28,6 +28,7 @@ export interface TokenService extends DefaultTokenService {
 
 export interface AuthContextProps extends TokenService {
   axiosClient: AxiosInstance;
+  baseUrl: string;
 }
 
 const AuthContext = React.createContext<AuthContextProps | null>(null);
@@ -45,9 +46,10 @@ export const useAuth = () => {
 export interface AuthContextProviderProps {
   children: React.ReactNode;
   tokenService: TokenService;
+  baseUrl: string;
 }
 
-export const AuthContextProvider = ({children, tokenService}: AuthContextProviderProps) => {
+export const AuthContextProvider = ({children, tokenService, baseUrl}: AuthContextProviderProps) => {
   const [axiosClient] = React.useState(() => {
     const _axios = axios.create();
     _axios.interceptors.request.use((config) => {
@@ -67,9 +69,10 @@ export const AuthContextProvider = ({children, tokenService}: AuthContextProvide
       value={React.useMemo(
         () => ({
           axiosClient,
+          baseUrl,
           ...tokenService
         }),
-        [axiosClient, tokenService]
+        [axiosClient, baseUrl, tokenService]
       )}
     >
       {children}
