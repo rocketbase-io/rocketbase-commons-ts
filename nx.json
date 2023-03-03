@@ -1,12 +1,7 @@
 {
-  "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "rocketbase-commons-ts",
-  "affected": {
-    "defaultBase": "master"
-  },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
           "build",
@@ -18,8 +13,15 @@
       }
     }
   },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
+  },
+  "extends": "nx/presets/npm.json",
+  "npmScope": "rocketbase-commons-ts",
+  "affected": {
+    "defaultBase": "master"
   },
   "generators": {
     "@nrwl/react": {
@@ -37,5 +39,27 @@
       }
     }
   },
-  "defaultProject": "demo-react-sample"
+  "defaultProject": "demo-react-sample",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "e2e": {
+      "inputs": [
+        "default",
+        "^default"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    }
+  }
 }

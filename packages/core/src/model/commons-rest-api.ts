@@ -118,3 +118,5 @@ export interface HasKeyValue {
 }
 
 export type Gender = 'female' | 'male' | 'diverse';
+
+export type Translation = Record<string, string>;

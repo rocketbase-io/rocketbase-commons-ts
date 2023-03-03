@@ -1,34 +1,15 @@
-import axios, {AxiosInstance} from "axios";
+import axios, {AxiosInstance, AxiosInterceptorOptions, AxiosRequestConfig} from "axios";
 import * as React from "react";
 
-export interface DefaultTokenParsed extends Record<string, unknown> {
-  iss?: string;
-  sub?: string;
-  aud?: string;
-  exp?: number;
-  iat?: number;
-  username?: string;
-}
-
-export interface TokenParsed extends Record<string, unknown>, DefaultTokenParsed {
-}
-
-export interface DefaultTokenService {
-  tokenParsed?: () => TokenParsed;
-  hasRole?: (roles: string[]) => boolean;
-  login: () => Promise<void>;
-  logout: () => Promise<void>;
-}
-
-export interface TokenService extends DefaultTokenService {
+export interface TokenService  {
   isLoggedIn: () => boolean;
   token: () => string;
-  updateToken: (successCallback: () => void) => void;
+  updateToken: () => Promise<string>;
 }
 
 export interface AuthContextProps extends TokenService {
   axiosClient: AxiosInstance;
-  baseUrl: string;
+  baseUrl: (key?: string) => string;
 }
 
 const AuthContext = React.createContext<AuthContextProps | null>(null);
@@ -46,30 +27,44 @@ export const useAuth = () => {
 export interface AuthContextProviderProps {
   children: React.ReactNode;
   tokenService: TokenService;
-  baseUrl: string;
+  baseUrl: string | Record<string, string>;
+  axiosConfigure?: (axios: AxiosInstance, tokenService: TokenService) => AxiosInstance;
 }
 
-export const AuthContextProvider = ({children, tokenService, baseUrl}: AuthContextProviderProps) => {
+const bearerInterceptor = (axios: AxiosInstance, tokenService: TokenService) => {
+  axios.interceptors.request.use(async (config) => {
+    if (tokenService.isLoggedIn()) {
+      await tokenService.updateToken();
+      config.headers!.Authorization = `Bearer ${tokenService.token()}`;
+      return config;
+    }
+    return config;
+  });
+  return axios;
+}
+
+export const AuthContextProvider = ({children, tokenService, baseUrl, axiosConfigure}: AuthContextProviderProps) => {
   const [axiosClient] = React.useState(() => {
     const _axios = axios.create();
-    _axios.interceptors.request.use((config) => {
-      if (tokenService.isLoggedIn()) {
-        const cb = () => {
-          config.headers!.Authorization = `Bearer ${tokenService.token()}`;
-          return Promise.resolve(config);
-        };
-        return tokenService.updateToken(cb);
-      }
-    });
-    return _axios;
+    return axiosConfigure ? axiosConfigure(_axios, tokenService) : bearerInterceptor(_axios, tokenService)
   });
+
+  const url = (key?: string) => {
+    if (key === undefined && typeof baseUrl === 'string') {
+      return baseUrl;
+    } else if (key !== undefined && typeof baseUrl !== 'string' && key in baseUrl) {
+      return baseUrl[key];
+    } else {
+      throw new Error(`mismatch in configuration -> key: ${key} and baseUrl: ${JSON.stringify(baseUrl)}`)
+    }
+  }
 
   return (
     <AuthContext.Provider
       value={React.useMemo(
         () => ({
           axiosClient,
-          baseUrl,
+          baseUrl: url,
           ...tokenService
         }),
         [axiosClient, baseUrl, tokenService]

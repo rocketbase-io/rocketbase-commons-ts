@@ -1,5 +1,4 @@
-import axios, { AxiosInstance,  AxiosRequestConfig, Method } from 'axios';
-import qs from 'qs';
+import axios, {AxiosInstance, AxiosRequestConfig, Method} from 'axios';
 
 export interface RequestorBuildConfig<Options, Result, Error = unknown> {
   client?: AxiosInstance;
@@ -82,12 +81,14 @@ export function buildDefaultAxiosRequestConfig(...configs: (AxiosRequestConfig |
   return mergeRequestConfig(
     {
       headers: {'content-type': 'application/json'},
-      paramsSerializer: (params) =>
-        qs.stringify(params, {arrayFormat: 'repeat'})
+      paramsSerializer: {
+        indexes: null
+      }
     },
     ...configs
   );
 }
+
 
 export function buildRequestorFactory(
   client: AxiosInstance = axios,

@@ -1,5 +1,6 @@
 {
-  "root": "packages/demo/react-sample-e2e",
+  "name": "demo-react-sample-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/demo/react-sample-e2e/src",
   "projectType": "application",
   "targets": {

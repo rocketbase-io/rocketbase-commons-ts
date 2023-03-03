@@ -1,10 +1,11 @@
 {
-  "root": "packages/demo/react-sample",
+  "name": "demo-react-sample",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/demo/react-sample/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:webpack",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/demo/react-sample",
@@ -42,11 +43,18 @@
               "maximumError": "1mb"
             }
           ]
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/webpack:dev-server",
       "options": {
         "buildTarget": "demo-react-sample:build",
         "hmr": true
@@ -55,8 +63,12 @@
         "production": {
           "buildTarget": "demo-react-sample:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "demo-react-sample:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -67,9 +79,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/demo/react-sample"],
+      "outputs": ["{workspaceRoot}/coverage/packages/demo/react-sample"],
       "options": {
-        "jestConfig": "packages/demo/react-sample/jest.config.js",
+        "jestConfig": "packages/demo/react-sample/jest.config.ts",
         "passWithNoTests": true
       }
     }
